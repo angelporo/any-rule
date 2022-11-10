@@ -1,9 +1,9 @@
-# 正则大全  ![已收录83条](https://img.shields.io/badge/已收录-83条-673ab7.svg) [![版本](https://badgen.net/vs-marketplace/v/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) [![安装量](https://badgen.net/vs-marketplace/i/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) [![下载量](https://badgen.net/vs-marketplace/d/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) ![MIT](https://img.shields.io/badge/license-MIT-F44336.svg) [![CircleCI](https://badgen.net/github/status/any86/any-rule/master/ci/circleci)](https://circleci.com/gh/any86/any-rule)
+# 正则大全  ![已收录84条](https://img.shields.io/badge/已收录-84条-673ab7.svg) [![版本](https://badgen.net/vs-marketplace/v/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) [![安装量](https://badgen.net/vs-marketplace/i/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) [![下载量](https://badgen.net/vs-marketplace/d/russell.any-rule)](https://marketplace.visualstudio.com/items?itemName=russell.any-rule) ![MIT](https://img.shields.io/badge/license-MIT-F44336.svg) [![CircleCI](https://badgen.net/github/status/any86/any-rule/master/ci/circleci)](https://circleci.com/gh/any86/any-rule)
 
 🦕支持**web** / **vscode** / **idea** / **Alfred Workflow**多平台
 
 ## :rocket:web版本
-https://any86.github.io/any-rule/
+https://any-rule.vercel.app/
 
 ## 🍭vscode插件
 
@@ -201,12 +201,7 @@ vscode应用商店中搜索"**any-rule**".
 
 ### 数字/货币金额（支持负数、千分位分隔符）
 ```javascript
-/^-?\d+(,\d{3})*(\.\d{1,2})?$/
-```
-
-### 数字/货币金额 (只支持正数、不支持校验千分位分隔符)
-```javascript
-/(?:^[1-9]([0-9]+)?(?:\.[0-9]{1,2})?$)|(?:^(?:0)$)|(?:^[0-9]\.[0-9](?:[0-9])?$)/
+/^-?\d{1,3}(,\d{3})*(\.\d{1,2})?$/
 ```
 
 ### 银行卡号（10到30位, 覆盖对公/私账户, 参考[微信支付](https://pay.weixin.qq.com/wiki/doc/api/xiaowei.php?chapter=22_1)）
@@ -241,7 +236,7 @@ vscode应用商店中搜索"**any-rule**".
 
 ### 手机号(mobile phone)中国(严谨), 根据工信部2019年最新公布的手机号段
 ```javascript
-/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[189]))\d{8}$/
+/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/
 ```
 
 ### 手机号(mobile phone)中国(宽松), 只要是13,14,15,16,17,18,19开头即可
@@ -314,9 +309,9 @@ vscode应用商店中搜索"**any-rule**".
 /^(?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])+$/
 ```
 
-### 小数
+### 小数(支持科学计数)
 ```javascript
-/^\d+\.\d+$/
+/^[+-]?(\d+([.]\d*)?([eE][+-]?\d+)?|[.]\d+([eE][+-]?\d+)?)$/
 ```
 
 ### 只包含数字
@@ -366,7 +361,7 @@ vscode应用商店中搜索"**any-rule**".
 
 ### 用户名校验，4到16位（字母，数字，下划线，减号）
 ```javascript
-/^[a-zA-Z0-9_-]{4,16}$/
+/^[\w-]{4,16}$/
 ```
 
 ### ip-v4[:端口]
@@ -411,7 +406,7 @@ vscode应用商店中搜索"**any-rule**".
 
 ### mac地址
 ```javascript
-/^((([a-f0-9]{2}:){5})|(([a-f0-9]{2}-){5}))[a-f0-9]{2}$/i
+/^(([a-f0-9][0,2,4,6,8,a,c,e]:([a-f0-9]{2}:){4})|([a-f0-9][0,2,4,6,8,a,c,e]-([a-f0-9]{2}-){4}))[a-f0-9]{2}$/i
 ```
 
 ### 匹配连续重复的字符
@@ -461,7 +456,7 @@ vscode应用商店中搜索"**any-rule**".
 
 ### 整数
 ```javascript
-/^-?[1-9]\d*$/
+/^(?:0|(?:-?[1-9]\d*))$/
 ```
 
 ### 浮点数
@@ -488,4 +483,14 @@ vscode应用商店中搜索"**any-rule**".
 ### 域名(非网址, 不包含协议)
 ```javascript
 /^([0-9a-zA-Z-]{1,}\.)+([a-zA-Z]{2,})$/
+```
+
+### 军官/士兵证
+```javascript
+/^[\u4E00-\u9FA5](字第)([0-9a-zA-Z]{4,8})(号?)$/
+```
+
+### 户口薄
+```javascript
+/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
 ```
